@@ -9,7 +9,7 @@ export default async function productDetails(productId) {
     productData = await findProductById(productId);
     
     // once we have the product details we can render out the HTML
-    // renderProductDetails();
+    renderProductDetails();
     
     // add listener to Add to Cart button
     document.getElementById("addToCart").addEventListener("click", addToCart);
@@ -18,8 +18,8 @@ export default async function productDetails(productId) {
 //     console.log("here's the data")
 // } else {console.log("no data")};
 
-function addToCart(product) {
-  let info = product;
+function addToCart() {
+  let info = productData;
   let infoHistory = getLocalStorage("so-cart") || [];
   infoHistory.push(info);
   setLocalStorage("so-cart", infoHistory); //this functions is what actually sets the ID
@@ -30,9 +30,9 @@ function renderProductDetails() {
     document.querySelector("#productNameWithoutBrand").innerHTML = productData.NameWithoutBrand;
     document.querySelector("#productImage").src = productData.Image;
     document.querySelector("#productImage").alt = productData.Name;  
-    document.querySelector("#productFinalPrice").innerHTML = productData.Finalprice; 
-    document.querySelector("#productColorName").innerHTML = productData.Colors.ColorName; 
+    document.querySelector("#productFinalPrice").innerHTML = productData.FinalPrice; 
+    document.querySelector("#productColorName").innerHTML = productData.Colors[0].ColorName; 
     document.querySelector("#productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
-    document.querySelector("#addToCart").innerHTML = productData.Id;
+    document.querySelector("#addToCart").dataset.id = productData.Id;
 }
 
