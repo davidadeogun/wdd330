@@ -35,3 +35,4 @@ function renderProductDetails() {
     document.querySelector("#productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
     document.querySelector("#addToCart").dataset.id = productData.Id;
 }
+
