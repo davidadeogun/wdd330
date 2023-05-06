@@ -161,6 +161,37 @@ button {
   max-width: 500px;
   margin: auto;
 }
+/*******************************************
+******DISCOUNTED PRICE DECLARATION********************
+**************************************8******/
+.discounted-price {
+/* You can change this to your preferred color */
+
+  padding: 4px;
+  font-size: 1.2em;
+  font-weight: bolder;
+  /* position: absolute; */
+  /*top: 10px; /* Adjust this value to position the label in the desired location */
+  /*right: 10px; /* Adjust this value to position the label in the desired location */
+  border-radius: 4px;
+}
+/*Controls the side by side positioning of the product-card__price and 
+the discount-percentage in the product listing page*/
+.amount {
+  display: flex;
+  justify-content: space-between;
+  
+}
+.discount-percentage {
+  color:#FF0000;
+}
+/*Strikes a line through the original prices of the listed items*/
+.product-card__price {
+  text-decoration: line-through;
+}
+/*******************************************
+******END OF DISCOUNTED PRICE DECLARATION********************
+**************************************8******/
 
 .product-detail img {
   width: 100%;
