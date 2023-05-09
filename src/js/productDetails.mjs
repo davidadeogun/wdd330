@@ -34,5 +34,24 @@ function renderProductDetails() {
     document.querySelector("#productColorName").innerHTML = productData.Colors[0].ColorName; 
     document.querySelector("#productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
     document.querySelector("#addToCart").dataset.id = productData.Id;
+
+
+    // This calculates and renders the discounted price
+    const productFinalPriceElement = document.querySelector("#productFinalPrice");
+    const priceText = productFinalPriceElement.textContent;
+    const priceNumber = parseFloat(priceText.replace(/[^\d.]/g, ''));
+
+    if (!isNaN(priceNumber)) {
+        const discountedPrice = priceNumber * 0.8; // Apply 20% discount
+        const formattedDiscountedPrice = priceText.replace(priceNumber.toFixed(2), discountedPrice.toFixed(2));
+ 
+        //Created an element to add the discounted price to the product page
+        const discountedPriceElement = document.createElement("p");
+        discountedPriceElement.id = "discountedPrice";
+        discountedPriceElement.textContent = `$${formattedDiscountedPrice}`;
+        productFinalPriceElement.insertAdjacentElement("afterend", discountedPriceElement);
+    } else {
+        console.error(`Invalid price format: ${priceText}`);
+    }
 }
 
