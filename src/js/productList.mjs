@@ -1,3 +1,5 @@
+import { getData } from "./productData.mjs";
+import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
     return `<li class="product-card">
@@ -12,20 +14,46 @@ function productCardTemplate(product) {
   </li>`
 }
 
-// renderList(list, el) {
-//     const htmlStrings =  list.map(productCardTemplate);
-//     el.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
-// }
-
 export default async function productList(selector, category) {
     
     // get the element we will insert the list into from the selector
-    let section = document.querySelector(".product-list");
+    let el = document.querySelector(selector);
     // get the list of products
-    const response = await fetch("/json/tents.json");
-    const tentsData = await response.json();
+    const products = await getData(category);
+    let fourProducts = []
+
+    for (let i = 0; i < 4; i++) {
+    fourProducts.push(products[i])
+    }
+
+    // console.log(fourProducts);
+    // for (let i = 0; i < 1; i++) {
+    //     products.forEach(tent => {
+    //         console.log(tent);
+    //     });
+    // }
+
+    // products.forEach(tent => {
+    //     for (i = 0; i < 5; i++)
+    //     fourProducts.push(tent[i]);
+    // });
+
+    // console.log(products);
+
+    // for (let i = 0; i < products.length; i++) {
+    //     fourProducts.push(products[i])
+    // }
+
+    // console.log(fourProducts);
+
+    // console.log(products);
+    
+    // render out the product list to the element
+    renderListWithTemplate(productCardTemplate, el, fourProducts);
+
+    // const tentsData = await response.json();
     // productCardTemplate(tentsData);
     // render out the product list to the element
-    const htmlItems = tentsData.map((product) => productCardTemplate(product));
-    section.innerHTML = htmlItems.join("");
+    // const htmlItems = tentsData.map((product) => productCardTemplate(product));
+    // section.innerHTML = htmlItems.join("");
 }
