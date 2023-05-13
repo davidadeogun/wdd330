@@ -1,7 +1,7 @@
 
 function productCardTemplate(product) {
     return `<li class="product-card">
-    <a href="product_pages/index.html?product=">
+    <a href="product_pages/index.html?product=${product.Id}">
     <img
       src="${product.Image}"
       alt="Image of ${product.Name}"
@@ -12,10 +12,15 @@ function productCardTemplate(product) {
   </li>`
 }
 
-export default async function productList() {
+// renderList(list, el) {
+//     const htmlStrings =  list.map(productCardTemplate);
+//     el.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
+// }
+
+export default async function productList(selector, category) {
     
     // get the element we will insert the list into from the selector
-    let section = document.querySelector(".products");
+    let section = document.querySelector(".product-list");
     // get the list of products
     const response = await fetch("/json/tents.json");
     const tentsData = await response.json();
