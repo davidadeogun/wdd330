@@ -165,14 +165,11 @@ button {
 ******DISCOUNTED PRICE DECLARATION********************
 **************************************8******/
 .discounted-price {
-/* You can change this to your preferred color */
+
 
   padding: 4px;
   font-size: 1.2em;
   font-weight: bolder;
-  /* position: absolute; */
-  /*top: 10px; /* Adjust this value to position the label in the desired location */
-  /*right: 10px; /* Adjust this value to position the label in the desired location */
   border-radius: 4px;
 }
 /*Controls the side by side positioning of the product-card__price and 
@@ -186,9 +183,16 @@ the discount-percentage in the product listing page*/
   color:#FF0000;
 }
 /*Strikes a line through the original prices of the listed items*/
-.product-card__price {
+.product-card__price, .cart-card__price{
   text-decoration: line-through;
 }
+
+/* 
+This declaration is to position the discounted price on the cart/index page */
+.discounted-price { 
+text-align: right;
+} 
+
 /*******************************************
 ******END OF DISCOUNTED PRICE DECLARATION********************
 **************************************8******/
