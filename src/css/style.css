@@ -233,6 +233,21 @@ the discount-percentage in the product listing page*/
   grid-column: 3;
 }
 
+
+/*CSS declaration for adding a superscript number of items to the backpack cart icon*/
+.cart-count {
+  position: absolute;
+  top: -1px;
+  right: -10px;
+  background: orange;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

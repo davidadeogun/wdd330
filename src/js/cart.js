@@ -4,6 +4,7 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  updateCartCount();
 }
 
 function cartItemTemplate(item) {
@@ -23,6 +24,12 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+
+function updateCartCount() {
+  let cart = getLocalStorage("so-cart") || [];
+  const cartCount = document.getElementById("cart-count");
+  cartCount.textContent = cart.length;
 }
 
 renderCartContents();
