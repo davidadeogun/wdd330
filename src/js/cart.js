@@ -5,8 +5,9 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   updateCartCount();
+  showTotalPrice();
   
-  applyDiscount();
+  // applyDiscount();
 }
 
 function cartItemTemplate(item) {
@@ -41,7 +42,40 @@ function updateCartCount() {
   cartCount.textContent = cart.length;
 }
 
+function showTotalPrice() {
+  let checkItems = getLocalStorage("so-cart");
+  const total = document.querySelector(".cart-total")
+  const showTotal = document.querySelector(".hide")
+  
+  let prices = [] // An array to store all the discounted prices.
+  let totalPrice = 0;
+
+  //Get all the discounted prices in the DOM
+  const discountedPrices = document.getElementsByClassName("discounted-price");
+  
+  // Use a for loop to convert the prices to float numbers
+  for (let i = 0; i < discountedPrices.length; i++) {
+    let priceText = discountedPrices[i].textContent; // Get the text E.G ($100.00)
+    let priceNumber = parseFloat(priceText.replace("$", "")); // Convert the text to float
+    prices.push(priceNumber); // Store the discounted prices in an array.
+
+  }
+
+  //Check if there is anything in the cart
+  if (checkItems && checkItems.length > 0) {
+    
+    // Use forEach method to calculate the Total Price
+    prices.forEach(price => {
+      totalPrice += price;
+    })
+
+    showTotal.style.display = "";
+    total.textContent = `Total: $${totalPrice}`;
+    
+    } else {
+      showTotal.style.display = "none"; // If there is no items in the cart, then we don't
+                                        // need to show the Total. 
+    }
+}
+
 renderCartContents();
-
-
-
