@@ -2,6 +2,8 @@ import { getData } from "./productData.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
+    // const prices = product.FinalPrice;
+
     return `<li class="product-card">
     <a href="product_pages/index.html?product=${product.Id}">
     <img
@@ -11,6 +13,10 @@ function productCardTemplate(product) {
     <h3 class="card__brand">${product.Brand.Name}</h3>
     <h2 class="card__name">${product.Name}</h2>
     <p class="product-card__price">$${product.FinalPrice}</p></a>
+    </a>
+    <div class="discount">
+      <span class="discounted-price">$${(product.FinalPrice * 0.8).toFixed(2)}</span>
+    </div>
   </li>`
 }
 
@@ -57,3 +63,29 @@ export default async function productList(selector, category) {
     // const htmlItems = tentsData.map((product) => productCardTemplate(product));
     // section.innerHTML = htmlItems.join("");
 }
+
+// async function applyDiscount() {
+//   // const productPriceElements = document.getElementsByClassName('product-card__price');
+//   // const discountedPriceElements = document.getElementsByClassName('discounted-price');
+
+//   const dataProducts = await getData();
+//   // console.log(dataProducts);
+//   let normalPrices = [];
+
+//   dataProducts.forEach(product => {
+//     console.log(product.FinalPrice);    
+//   });
+
+//     if (!isNaN(priceNumber)) {
+//       // Apply the discount and format the result
+//       const discountedPrice = priceNumber * 0.8; // Apply 20% discount
+//       const formattedDiscountedPrice = priceText.replace(priceNumber.toFixed(2), discountedPrice.toFixed(2));
+//       return formattedDiscountedPrice;
+
+//       // Update the discounted-price element
+//       // discountedPriceElements[i].textContent = formattedDiscountedPrice;
+//   }
+// }
+
+// console.log(applyDiscount);
+// applyDiscount()
