@@ -5,34 +5,42 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 let productData = {};
 
 export default async function productDetails(productId) {
-    // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-    productData = await findProductById(productId);
-    
-    // once we have the product details we can render out the HTML
-    renderProductDetails();
-    
-    // add listener to Add to Cart button
-    document.getElementById("addToCart").addEventListener("click", addToCart);
+  productData = await findProductById(productId);
+
+  renderProductDetails();
+
+  document.getElementById("addToCart").addEventListener("click", addToCart);
 }
-// if(productData.length < 0) {
-//     console.log("here's the data")
-// } else {console.log("no data")};
 
 function addToCart() {
   let info = productData;
+  
+  if (!productData) {
+    // Product not found, display error message
+    document.querySelector("#errorMessage").innerHTML = "Product not found";
+    document.querySelector("#errorPage").style.display = "block";
+    return; // Stop execution
+  }
+  
   let infoHistory = getLocalStorage("so-cart") || [];
   infoHistory.push(info);
-  setLocalStorage("so-cart", infoHistory); //this functions is what actually sets the ID
+  setLocalStorage("so-cart", infoHistory);
 }
 
 function renderProductDetails() {
-    document.querySelector("#productName").innerHTML = productData.Brand.Name;
-    document.querySelector("#productNameWithoutBrand").innerHTML = productData.NameWithoutBrand;
-    document.querySelector("#productImage").src = productData.Image;
-    document.querySelector("#productImage").alt = productData.Name;  
-    document.querySelector("#productFinalPrice").innerHTML = productData.FinalPrice; 
-    document.querySelector("#productColorName").innerHTML = productData.Colors[0].ColorName; 
-    document.querySelector("#productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
-    document.querySelector("#addToCart").dataset.id = productData.Id;
-}
+  if (!productData) {
+    // Product not found, display error message
+    document.querySelector("#errorMessage").innerHTML = "Product not found";
+    document.querySelector("#errorPage").style.display = "block";
+    return; // Stop execution
+  }
 
+  document.querySelector("#productName").innerHTML = productData.Brand.Name;
+  document.querySelector("#productNameWithoutBrand").innerHTML = productData.NameWithoutBrand;
+  document.querySelector("#productImage").src = productData.Image;
+  document.querySelector("#productImage").alt = productData.Name;  
+  document.querySelector("#productFinalPrice").innerHTML = productData.FinalPrice; 
+  document.querySelector("#productColorName").innerHTML = productData.Colors[0].ColorName; 
+  document.querySelector("#productDescriptionHtmlSimple").innerHTML = productData.DescriptionHtmlSimple;
+  document.querySelector("#addToCart").dataset.id = productData.Id;
+}
