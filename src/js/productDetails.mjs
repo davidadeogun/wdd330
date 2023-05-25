@@ -15,7 +15,7 @@ export default async function productDetails(productId) {
     document.getElementById("addToCart").addEventListener("click", addToCart);
 
     //Updating the cart count. Called the updateCartCount function for the Superscript number
-    updateCartCount();
+    // updateCartCount();
 }
 // if(productData.length < 0) {
 //     console.log("here's the data")
@@ -27,14 +27,14 @@ function addToCart() {
   infoHistory.push(info);
   setLocalStorage("so-cart", infoHistory); //this functions is what actually sets the ID
      //Updating the cart count. Called the updateCartCount function for the Superscript number
-     updateCartCount();
+    //  updateCartCount();
 }
 //Function to updateCartCount.Superscript numbers
-function updateCartCount() {
-    let cart = getLocalStorage("so-cart") || [];
-    const cartCount = document.getElementById('cart-count');
-    cartCount.textContent = cart.length;
-  }
+// function updateCartCount() {
+//     let cart = getLocalStorage("so-cart") || [];
+//     const cartCount = document.getElementById('cart-count');
+//     cartCount.textContent = cart.length;
+//   }
 
 function renderProductDetails() {
     document.querySelector("#productName").innerHTML = productData.Brand.Name;

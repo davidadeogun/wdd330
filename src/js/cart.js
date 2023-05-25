@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+// import { getLocalStorage } from "./utils.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 import ShoppingCart from "./shoppingCart.mjs";
 

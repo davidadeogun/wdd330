@@ -30,17 +30,17 @@
 //This function is for the superscript number of items on the main index
 //page. Works for the main index page and other index pages under the product_pages
 
-function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
+// function getLocalStorage(key) {
+//   return JSON.parse(localStorage.getItem(key));
+// }
 
-  function updateCartCount() {
-    let cart = getLocalStorage("so-cart") || [];
-    const cartCount = document.getElementById("cart-count");
-    cartCount.textContent = cart.length;
-  }
+//   function updateCartCount() {
+//     let cart = getLocalStorage("so-cart") || [];
+//     const cartCount = document.getElementById("cart-count");
+//     cartCount.textContent = cart.length;
+//   }
 
-  // call the function when the DOM is fully loaded
-  window.onload = function() {
-    updateCartCount();
-  };
+//   // call the function when the DOM is fully loaded
+//   window.onload = function() {
+//     updateCartCount();
+//   };
