@@ -73,3 +73,32 @@ area.value = localStorage.getItem("autosave");
 area.addEventListener("input", () => {
     localStorage.setItem("autosave", area.value);
 });
+
+
+/******************************************************************/
+  //Function to calculate the discouted price on the product page
+/******************************************************************/
+
+function calculateDiscountedPrice(originalPrice, discountPercentage) {
+    return originalPrice * (1 - discountPercentage / 100);
+}
+
+function displayDiscountedPrice() {
+    const originalPriceElement = document.getElementById('product-card__price');
+    const discountedPriceElement = document.getElementById('discount-price');
+
+    // Extract the original price from the text and convert it to a number
+    const originalPrice = parseFloat(originalPriceElement.textContent.replace(/[^0-9.]/g, ''));
+
+    // Set the discount percentage (e.g. 20%)
+    const discountPercentage = 20;
+
+    // Calculate the discounted price
+    const discountedPrice = calculateDiscountedPrice(originalPrice, discountPercentage);
+
+    // Display the discounted price
+    discountedPriceElement.textContent = `$${discountedPrice.toFixed(2)}`;
+}
+
+// Run the function to display the discounted price
+displayDiscountedPrice();

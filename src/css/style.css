@@ -161,6 +161,41 @@ button {
   max-width: 500px;
   margin: auto;
 }
+/*******************************************
+******DISCOUNTED PRICE DECLARATION********************
+**************************************8******/
+.discounted-price {
+
+
+  padding: 4px;
+  font-size: 1.2em;
+  font-weight: bolder;
+  border-radius: 4px;
+}
+/*Controls the side by side positioning of the product-card__price and 
+the discount-percentage in the product listing page*/
+.amount {
+  display: flex;
+  justify-content: space-between;
+  
+}
+.discount-percentage {
+  color:#FF0000;
+}
+/*Strikes a line through the original prices of the listed items*/
+.product-card__price, .cart-card__price{
+  text-decoration: line-through;
+}
+
+/* 
+This declaration is to position the discounted price on the cart/index page */
+.discounted-price { 
+text-align: right;
+} 
+
+/*******************************************
+******END OF DISCOUNTED PRICE DECLARATION********************
+**************************************8******/
 
 .product-detail img {
   width: 100%;
@@ -201,6 +236,21 @@ button {
   grid-row: 2;
   grid-column: 3;
 }
+
+
+/*CSS declaration for adding a superscript number of items to the backpack cart icon*/
+.cart-count {
+  position: absolute;
+  top: -1px;
+  right: -10px;
+  background: orange;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+
 
 @media screen and (min-width: 500px) {
   body {
