@@ -34,7 +34,7 @@ function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-  function updateCartCount() {
+ export default function updateCartCount() {
     let cart = getLocalStorage("so-cart") || [];
     const cartCount = document.getElementById("cart-count");
     cartCount.textContent = cart.length;
