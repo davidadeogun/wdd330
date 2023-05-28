@@ -43,3 +43,4 @@ function getLocalStorage(key) {
   window.onload = function() {
     updateCartCount();
   };
+

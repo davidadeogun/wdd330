@@ -6,7 +6,7 @@ export function qs(selector, parent = document) {
 // export const qs = (selector, parent = document) => parent.querySelector(selector);
 
 // retrieve data from localstorage
-export function getLocalStorage(key) {
+export function getLocalStorage(key) {                                                                                                          
   let retString = localStorage.getItem(key);
   let retArray = JSON.parse(retString);
   return retArray;
