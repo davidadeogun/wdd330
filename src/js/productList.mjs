@@ -5,7 +5,7 @@ function productCardTemplate(product) {
     // const prices = product.FinalPrice;
 
     return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
+    <a href="/product_pages/index.html?product=${product.Id}">
     <img
       src="${product.Image}"
       alt="Image of ${product.Name}"
@@ -34,4 +34,5 @@ export default async function productList(selector, category) {
 
     // render out the product list to the element
     renderListWithTemplate(productCardTemplate, el, fourProducts);
+    document.querySelector(".title").innerHTML = category;
 }
