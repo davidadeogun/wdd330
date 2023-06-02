@@ -1,18 +1,25 @@
+// Get the add to cart button
 const addcartButton = document.getElementById("addToCart");
-const cartIcon = document.querySelector(".cart svg");
 
-// cartIcon.addEventListener("mouseover", function() {
-//   cartIcon.style.backgroundColor = "blue";
-// });
-
-// cartIcon.addEventListener("mouseout", function() {
-//   image.style.backgroundColor = "red";
-// });
+// Create a addEventListener to create the animation when the
+// user click on the button
 addcartButton.addEventListener("click", function() {
-  console.log("Hey");
+  
+  // 1)Take the cart icon when clicked and store it in a
+  // 2) Add a new class to run the animation that is in the CSS file.
+  const cartIcon = document.querySelector(".cart");
   cartIcon.classList.add("shake-animation");
 
+  // Set the time the animation will run. Then, remove the new class
+  // to stop the animation
   setTimeout(function() {
     cartIcon.classList.remove("shake-animation");
-  }, 500);
+  }, 700);
+
+  // Scroll up the screen so the user can see the shaking animation.
+  cartIcon.offsetTop;
+  window.scrollTo({
+    top: cartIcon,
+    behavior: "smooth"
+  });
 });
