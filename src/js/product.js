@@ -1,4 +1,3 @@
-
 import { getParams, loadHeaderFooter } from "./utils.mjs";
 import productDetails from "./productDetails.mjs";
 
