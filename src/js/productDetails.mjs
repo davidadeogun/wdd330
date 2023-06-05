@@ -39,7 +39,7 @@ function updateCartCount() {
 function renderProductDetails() {
     document.querySelector("#productName").innerHTML = productData.Brand.Name;
     document.querySelector("#productNameWithoutBrand").innerHTML = productData.NameWithoutBrand;
-    document.querySelector("#productImage").src = productData.Image;
+    document.querySelector("#productImage").src = productData.Images.PrimaryLarge;
     document.querySelector("#productImage").alt = productData.Name;  
     document.querySelector("#productFinalPrice").innerHTML = productData.FinalPrice; 
     document.querySelector("#productColorName").innerHTML = productData.Colors[0].ColorName; 
