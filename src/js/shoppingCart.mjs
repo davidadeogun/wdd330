@@ -2,7 +2,8 @@ import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
 export default function ShoppingCart() {
   const cartItems = getLocalStorage("so-cart");
-  const outputEl = document.querySelector(".product-list");
+  const outputEl = document.querySelector(".product-list-cart");
+  console.log(cartItems)
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   showTotalPrice();
 //   updateCartCount();
@@ -24,7 +25,7 @@ export default function ShoppingCart() {
     const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
       <img
-        src="${item.Image}"
+        src="${item.Images.PrimarySmall}"
         alt="${item.Name}"
       />
     </a>
@@ -34,7 +35,7 @@ export default function ShoppingCart() {
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: 1</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
-    <p class="discounted-price">$${discountedPrice.toFixed(2)}</p>
+    <p class="cart-card__discounted-price">$${discountedPrice.toFixed(2)}</p>
   </li>`;
   
     return newItem;
@@ -60,7 +61,7 @@ export default function ShoppingCart() {
     let totalPrice = 0;
   
     //Get all the discounted prices in the DOM
-    const discountedPrices = document.getElementsByClassName("discounted-price");
+    const discountedPrices = document.getElementsByClassName("cart-card__discounted-price");
     
     // Use a for loop to convert the prices to float numbers
     for (let i = 0; i < discountedPrices.length; i++) {

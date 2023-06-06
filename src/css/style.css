@@ -123,12 +123,19 @@ button {
   padding: 0.5em;
 }
 .product-list {
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* flex-flow: row wrap; */
   justify-content: space-between;
   list-style-type: none;
   padding: 0;
 }
+
+.product-list-cart {
+  display: flex;
+  flex-direction: column;
+}
+
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
@@ -234,6 +241,11 @@ text-align: right;
 
 .cart-card__price {
   grid-row: 2;
+  grid-column: 3;
+}
+
+.cart-card__discounted-price {
+  grid-row: 3;
   grid-column: 3;
 }
 
