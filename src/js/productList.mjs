@@ -34,5 +34,7 @@ export default async function productList(selector, category) {
 
     // render out the product list to the element
     renderListWithTemplate(productCardTemplate, el, fourProducts);
-    document.querySelector(".title").innerHTML = category;
+    // Show the category on the Title of the page with the first letter uppercased
+    document.querySelector(".title").innerHTML = `Top Products: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+    console.log(category);
 }
