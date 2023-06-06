@@ -130,6 +130,12 @@ button {
   list-style-type: none;
   padding: 0;
 }
+
+.product-list-cart {
+  display: flex;
+  flex-direction: column;
+}
+
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
