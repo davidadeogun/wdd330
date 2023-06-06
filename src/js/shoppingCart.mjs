@@ -80,7 +80,7 @@ export default function ShoppingCart() {
       })
   
       showTotal.style.display = "";
-      total.textContent = `Total: $${totalPrice}`;
+      total.textContent = `Total: $${totalPrice.toFixed(2)}`;
       
       } else {
         showTotal.style.display = "none"; // If there is no items in the cart, then we don't
