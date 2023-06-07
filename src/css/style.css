@@ -90,7 +90,13 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  
 }
+
+.checkout-button {
+  text-decoration: none;
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -266,6 +272,8 @@ text-align: right;
   text-align: right;
   padding-right: 107px;
 }
+
+
 
 @media screen and (min-width: 500px) {
   body {
