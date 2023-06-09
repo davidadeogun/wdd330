@@ -1,4 +1,4 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 
@@ -65,4 +65,3 @@ function renderProductDetails() {
         console.error(`Invalid price format: ${priceText}`);
     }
 }
-
