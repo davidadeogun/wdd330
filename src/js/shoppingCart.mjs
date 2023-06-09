@@ -8,9 +8,10 @@ let pricesLocalStorage = [];
 export default function ShoppingCart() {
   const cartItems = getLocalStorage("so-cart");
   const outputEl = document.querySelector(".product-list-cart");
-  // console.log(cartItems)
+
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   showTotalPrice();
+  removeProduct()
 //   updateCartCount();
     // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     // document.querySelector(".product-list").innerHTML = htmlItems.join("");
@@ -30,8 +31,10 @@ export default function ShoppingCart() {
     //Store the prices in the local storage.
     pricesLocalStorage.push(discountedPrice.toFixed(2));
     // setLocalStorage("so-cart-prices", pricesLocalStorage);
+    // console.log(item.Id)
   
     const newItem = `<li class="cart-card divider">
+    <div class="remove_button" data-id="${item.Id}">X</div>
     <a href="#" class="cart-card__image">
       <img
         src="${item.Images.PrimarySmall}"
@@ -96,4 +99,32 @@ export default function ShoppingCart() {
         showTotal.style.display = "none"; // If there is no items in the cart, then we don't
                                           // need to show the Total. 
       }
+  }
+
+  function removeProduct() {
+    const removeButtons = document.querySelectorAll(".remove_button");
+  
+    removeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const dataId = button.dataset.id;
+        console.log(dataId);
+        
+        // Get elements form localStorage
+        const cartItems = getLocalStorage("so-cart");
+  
+        // Find the index of the element we want to remove
+        const index = cartItems.findIndex((item) => item.Id === dataId);
+  
+        if (index !== -1) {
+          // remove the element selected
+          cartItems.splice(index, 1);
+  
+          // Store the uptdated list of items
+          setLocalStorage("so-cart", cartItems);
+
+          //Call shoppingCart to render again the function
+          ShoppingCart()
+        }
+      });
+    });
   }
