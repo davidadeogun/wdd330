@@ -44,7 +44,6 @@ const checkoutProcess = {
     const itemNumElement = document.querySelector(this.outputSelector + " #num-items");
     const discountedPrices = getLocalStorage("so-cart-prices");
     let listPrices = []
-    console.log(discountedPrices);
     
     let totalPrice = 0
     
