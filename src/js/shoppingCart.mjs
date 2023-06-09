@@ -1,4 +1,9 @@
-import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./utils.mjs";
+
+//This is for store the prices (discount prices).
+// Later we'll use this to calculate the total on the
+// Checkout page 
+let pricesLocalStorage = [];
 
 export default function ShoppingCart() {
   const cartItems = getLocalStorage("so-cart");
@@ -21,6 +26,10 @@ export default function ShoppingCart() {
     //to calculate the discounted price.
     const priceNumber = parseFloat(item.FinalPrice);
     const discountedPrice = priceNumber * 0.8; //This applies 20% discount
+    
+    //Store the prices in the local storage.
+    pricesLocalStorage.push(discountedPrice.toFixed(2));
+    // setLocalStorage("so-cart-prices", pricesLocalStorage);
   
     const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
@@ -68,6 +77,7 @@ export default function ShoppingCart() {
       let priceText = discountedPrices[i].textContent; // Get the text E.G ($100.00)
       let priceNumber = parseFloat(priceText.replace("$", "")); // Convert the text to float
       prices.push(priceNumber); // Store the discounted prices in an array.
+      setLocalStorage("so-cart-prices", prices);
   
     }
   
