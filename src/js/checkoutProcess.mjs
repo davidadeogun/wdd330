@@ -42,15 +42,24 @@ const checkoutProcess = {
   calculateItemSummary: function () {
     const summaryElement = document.querySelector(this.outputSelector + " #cartTotal");
     const itemNumElement = document.querySelector(this.outputSelector + " #num-items");
-    const discountedPrices = Array(getLocalStorage("so-cart-prices"));
+    const discountedPrices = getLocalStorage("so-cart-prices");
     let listPrices = []
+    console.log(discountedPrices);
+    
+    let totalPrice = 0
+    
+    for (let i = 0; i < discountedPrices.length; i++) {
+      totalPrice += discountedPrices[i];
+    }
+
+    console.log(totalPrice)
 
     // Take the prices and show the total
     
     itemNumElement.innerText = this.list.length;
     // calculate the total of all the items in the cart
     const amounts = this.list.map((item) => item.FinalPrice);
-    this.itemTotal = amounts.reduce((sum, item) => sum + item);
+    this.itemTotal = totalPrice;
     summaryElement.innerText = `$${this.itemTotal}`;
   },
   calculateOrdertotal: function () {

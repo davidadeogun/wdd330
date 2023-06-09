@@ -29,7 +29,7 @@ export default function ShoppingCart() {
     
     //Store the prices in the local storage.
     pricesLocalStorage.push(discountedPrice.toFixed(2));
-    setLocalStorage("so-cart-prices", pricesLocalStorage);
+    // setLocalStorage("so-cart-prices", pricesLocalStorage);
   
     const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
@@ -77,6 +77,7 @@ export default function ShoppingCart() {
       let priceText = discountedPrices[i].textContent; // Get the text E.G ($100.00)
       let priceNumber = parseFloat(priceText.replace("$", "")); // Convert the text to float
       prices.push(priceNumber); // Store the discounted prices in an array.
+      setLocalStorage("so-cart-prices", prices);
   
     }
   
