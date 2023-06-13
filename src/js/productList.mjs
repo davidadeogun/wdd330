@@ -1,13 +1,13 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
     // const prices = product.FinalPrice;
 
     return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
+    <a href="/product_pages/index.html?product=${product.Id}">
     <img
-      src="${product.Image}"
+      src="${product.Images.PrimaryMedium}"
       alt="Image of ${product.Name}"
     />
     <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -25,7 +25,7 @@ export default async function productList(selector, category) {
     // get the element we will insert the list into from the selector
     let el = document.querySelector(selector);
     // get the list of products
-    const products = await getData(category);
+    const products = await getProductsByCategory (category);
     let fourProducts = []
 
     for (let i = 0; i < 4; i++) {
@@ -34,4 +34,7 @@ export default async function productList(selector, category) {
 
     // render out the product list to the element
     renderListWithTemplate(productCardTemplate, el, fourProducts);
+    // Show the category on the Title of the page with the first letter uppercased
+    document.querySelector(".title").innerHTML = `Top Products: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+    // console.log(category);
 }

@@ -1,4 +1,4 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 
@@ -39,7 +39,7 @@ function updateCartCount() {
 function renderProductDetails() {
     document.querySelector("#productName").innerHTML = productData.Brand.Name;
     document.querySelector("#productNameWithoutBrand").innerHTML = productData.NameWithoutBrand;
-    document.querySelector("#productImage").src = productData.Image;
+    document.querySelector("#productImage").src = productData.Images.PrimaryLarge;
     document.querySelector("#productImage").alt = productData.Name;  
     document.querySelector("#productFinalPrice").innerHTML = productData.FinalPrice; 
     document.querySelector("#productColorName").innerHTML = productData.Colors[0].ColorName; 
@@ -65,4 +65,3 @@ function renderProductDetails() {
         console.error(`Invalid price format: ${priceText}`);
     }
 }
-
