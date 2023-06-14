@@ -6,17 +6,27 @@ import { getLocalStorage, setLocalStorage, renderListWithTemplate } from "./util
 let pricesLocalStorage = [];
 
 export default function ShoppingCart() {
-  const cartItems = getLocalStorage("so-cart");
+
   const outputEl = document.querySelector(".product-list-cart");
-  // console.log(cartItems)
+  
+  //Get the "Sort" button
+  const sortButton = document.querySelector("#sort-button");
+  
+  // Execute the function with an addEventListener
+  sortButton.addEventListener("click", sortProducts);
+
+  //Get products from localStorage
+  const cartItems = getLocalStorage("so-cart");
+
+  // Render de products
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   showTotalPrice();
-  removeProduct()
+  removeProduct();
+
 //   updateCartCount();
     // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     // document.querySelector(".product-list").innerHTML = htmlItems.join("");
     // updateCartCount();
-    // showTotalPrice();
     
     // applyDiscount();
   }
@@ -126,4 +136,36 @@ function removeProduct() {
       }
     });
   });
-}
+};
+
+
+function sortProducts(cartProducts) {
+  const orderValue = document.querySelector("#sort-selector").value;
+  const productList = document.querySelector(".product-list-cart");
+
+  // Get the list of products elements
+  const productItems = Array.from(productList.querySelectorAll("li"));
+
+  // Ordenar los productos según el valor seleccionado
+  if (orderValue === "name") {
+    productItems.sort((a, b) => {
+      const nameA = a.querySelector("h2.card__name").textContent;
+      const nameB = b.querySelector("h2.card__name").textContent;
+      return nameA.localeCompare(nameB);
+    });
+  } else if (orderValue === "price") {
+    productItems.sort((a, b) => {
+      const priceA = parseFloat(a.querySelector("p.cart-card__price").textContent.replace("$", ""));
+      const priceB = parseFloat(b.querySelector("p.cart-card__price").textContent.replace("$", ""));
+      return priceA - priceB;
+    });
+  }
+
+  // Clean the current product cart list
+  productList.innerHTML = "";
+
+  // display again the sorted products to the DOM
+  productItems.forEach((item) => {
+    productList.appendChild(item);
+  });
+};
