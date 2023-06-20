@@ -10,6 +10,7 @@ export default async function productDetails(productId) {
     
     // once we have the product details we can render out the HTML
     renderProductDetails();
+    discountedSign();
     
     // add listener to Add to Cart button
     document.getElementById("addToCart").addEventListener("click", addToCart);
@@ -64,4 +65,27 @@ function renderProductDetails() {
     } else {
         console.error(`Invalid price format: ${priceText}`);
     }
+}
+
+function discountedSign() {
+   
+    //Get the container for the sign 
+    let container = document.querySelector(".discounted-sign-container");
+
+    //Create a img and p element for the image and text
+    let signImg = document.createElement("img");
+    let text = document.createElement("p");
+    
+    //Add a class, src, and alt to the img element
+    signImg.classList.add("discounted-sign");
+    signImg.alt = "Red sign that shows the discound price";
+    signImg.src = "../public/images/red_sign.png";
+
+    //Add the text, and the class to the p element
+    text.textContent = "-20%"
+    text.classList.add("disocunted-sign-text");
+
+    //Append the image and text to the container
+    container.appendChild(signImg)
+    container.appendChild(text);
 }

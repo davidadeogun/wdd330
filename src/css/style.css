@@ -182,6 +182,7 @@ button {
   padding: 1em;
   max-width: 500px;
   margin: auto;
+  position: relative;
 }
 /*******************************************
 ******DISCOUNTED PRICE DECLARATION********************
@@ -218,11 +219,64 @@ text-align: right;
 ******END OF DISCOUNTED PRICE DECLARATION********************
 **************************************8******/
 
-.product-detail img {
+#productImage {
   width: 100%;
 }
 
+.discounted-sign-container {
+  position: absolute;
+  top: 15%;
+  left: 0%;
+  /* background-color: #525b0f; */
+}
+
+.discounted-sign {
+  width: 150px;
+  height: 150px;
+  /* background-color: #e70404; */
+  filter: drop-shadow(6px 5px 5px 5);
+}
+
+.disocunted-sign-text {
+  position: absolute;
+  color: #FFFFFF;
+  font-size: 50px;
+  top: 49%;
+  right: 57%;
+  transform: translate(60%, -140%);
+}
+
 /* Start cart list card styles */
+
+.sort-container {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  align-items: center;
+}
+
+.sort-container label,
+.sort-container select,
+.sort-container button {
+  margin-left: 10px;
+  /* text-align: center; */
+  font-size: var(--font-base);
+}
+
+.sort-container select,
+.sort-container button {
+  width: 110px;
+  height: 50px;
+  border: 1px solid #000000;
+  text-align: center;
+}
+
+.sort-container select {
+  background-color: #525b0f;
+  color: #FFFFFF;
+}
+
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
