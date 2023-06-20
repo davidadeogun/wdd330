@@ -79,7 +79,7 @@ function discountedSign() {
     //Add a class, src, and alt to the img element
     signImg.classList.add("discounted-sign");
     signImg.alt = "Red sign that shows the discound price";
-    signImg.src = "../public/images/red_sign.png";
+    signImg.src = "../images/red_sign.png";
 
     //Add the text, and the class to the p element
     text.textContent = "-20%"
