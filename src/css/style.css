@@ -347,6 +347,49 @@ form input {
 
 /*End of Checkout page styles*/
 
+
+/*THIS IS THE DECLARATION FOR THE SEARCH BOX ON THE MAIN PAGE TO SEARCH FOR PRODUCTS*/
+form {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.search-box {
+  margin-top: 50px;
+}
+button {
+  margin: 5px;
+}
+
+
+/*END OFTHE DECLARATION FOR THE SEARCH BOX ON THE MAIN PAGE TO SEARCH FOR PRODUCTS*/
+
+
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
