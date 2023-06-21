@@ -399,6 +399,23 @@ form input {
   grid-row: 4/5;
 }
 
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+  border: 1px solid darkorange;
+  width: 410px;
+}
+.alert p {
+  margin: 0;
+}
+
+.alert span {
+  cursor: pointer;
+}
+
 /*End of Checkout page styles*/
 
 @media screen and (min-width: 500px) {
