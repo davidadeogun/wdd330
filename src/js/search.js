@@ -1,29 +1,37 @@
-const jsonFiles = ['backpacks.json', 'sleeping-bags.json', 'tents.json'];
-const basePath = '../public/json';
-
-// event listener for the form submission
 document.getElementById('search-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // prevent the page from refreshing
+    // Prevent the form from submitting normally
+    event.preventDefault();
 
-    const searchTerm = document.getElementById('search-input').value;
+    // Get the search term from the input field
+    var searchTerm = document.getElementById('search-input').value;
 
-    // empty product list
-    const productList = document.getElementById('product-list');
-    productList.innerHTML = '';
+    // Convert the search term to its plural form
+    if (!searchTerm.endsWith('s')) {
+        searchTerm = searchTerm + 's';
+    }
 
-    jsonFiles.forEach(function(jsonFile) {
-        fetch(`${basePath}/${jsonFile}`)
+    // Define an array of filenames for your JSON files
+    var jsonFiles = ['tents', 'backpacks', 'sleeping-bags'];
+
+    // Use Promise.all to fetch all JSON files at once
+    Promise.all(jsonFiles.map(file => 
+        fetch(`/json/${file}.json`)
             .then(response => response.json())
-            .then(data => {
-                // assuming each data object in JSON file has a 'name' property
-                const filteredData = data.filter(product => product.name.includes(searchTerm));
+    ))
+    .then(results => {
+        // results is an array of the parsed JSON from each file
+        // Flatten the array to make it easier to search
+        var allProducts = [].concat(...results);
 
-                filteredData.forEach(product => {
-                    const li = document.createElement('li');
-                    li.textContent = product.name;
-                    productList.appendChild(li);
-                });
-            })
-            .catch(err => console.error(err));
+        // Filter the products based on the search term
+        var filteredProducts = allProducts.filter(product => 
+            product.category.toLowerCase() === searchTerm.toLowerCase()
+        );
+
+        // Now, do something with the filtered products
+        console.log(filteredProducts);
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
 });
