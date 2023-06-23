@@ -418,6 +418,27 @@ form input {
 
 /*End of Checkout page styles*/
 
+.login-main {
+  padding: 10px 0;
+}
+
+.login-form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.login-form input {
+  width: 100%;
+  height: 40px;
+  margin: 5px 0 15px 0;
+}
+
+/*Login page styles*/
+
+
+
+/*End of Login page styles*/
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
