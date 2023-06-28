@@ -116,7 +116,6 @@ function removeProduct() {
   removeButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const dataId = button.dataset.id;
-      console.log(dataId);
       
       // Get elements form localStorage
       const cartItems = getLocalStorage("so-cart");

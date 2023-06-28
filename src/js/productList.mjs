@@ -5,6 +5,7 @@ function productCardTemplate(product) {
     // const prices = product.FinalPrice;
 
     return `<li class="product-card">
+    <div class="look-button" data-id="${product.Id}">🔍</div>
     <a href="/product_pages/index.html?product=${product.Id}">
     <img
       src="${product.Images.PrimaryMedium}"
@@ -36,5 +37,55 @@ export default async function productList(selector, category) {
     renderListWithTemplate(productCardTemplate, el, fourProducts);
     // Show the category on the Title of the page with the first letter uppercased
     document.querySelector(".title").innerHTML = `Top Products: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
-    // console.log(category);
+
+    // renderListWithTemplate(showPreview(productPreview(prod)))
+    showPreview(fourProducts);
+
+}
+
+function showPreview(products) {
+
+  //Get the products
+  const product = products;
+  //Get the preview button
+  const previewButtons = document.querySelectorAll(".look-button");
+  const productView = document.querySelector("#productView");
+
+
+  //Use for each to apply the same function to all the preview buttons
+  previewButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const productId = button.getAttribute("data-id");
+      const product = products.find(p => p.Id === productId);
+
+      const productContent = productPreview(product);
+
+
+      productView.innerHTML = productContent;
+
+
+      productView.style.display = "block";
+      
+    });
+    // renderListWithTemplate(productPreview, ".products", product);
+    
+
+  });
+
+  productView.addEventListener("click", function() {
+    productView.style.display = "none";
+  });
+}
+
+function productPreview(prod) {
+  //Create the template for the modal preview
+  return`<div class="previewContainer">
+  <h3 id="productName">${prod.Brand.Name}</h3>
+  <a href="/product_pages/index.html?product=${prod.Id}"><h2 class="divider" id="productNameWithoutBrand">${prod.NameWithoutBrand}</h2></a>
+  <img id="productImage" class="divider" src="${prod.Images.PrimaryLarge}" alt="${prod.Name}"/>
+  <p class="product-card__price" id="productFinalPrice">${prod.FinalPrice}</p>
+  <p id="discountedPrice">$1.00</p>
+  <p class="product__color" id="productColorName">${prod.Colors[0].ColorName}</p>
+  <p class="product__description" id="productDescriptionHtmlSimple">${prod.DescriptionHtmlSimple}</p>
+  </div>`
 }

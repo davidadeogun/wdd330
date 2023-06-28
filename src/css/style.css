@@ -176,6 +176,37 @@ button {
 .card__name {
   font-size: 1em;
 }
+
+.look-button {
+  cursor: pointer;
+  border: 1px solid var(--dark-grey);
+  width: 30px;
+  background-color: var(--light-grey);
+}
+
+.product-view {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 500px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  overflow: scroll;
+  z-index: 1;
+  background-color: var(--light-grey);
+}
+
+.previewContainer {
+  position: fixed;
+  padding: 15px;
+  /* padding: 100px; */
+  /* display: none; */
+  /* width: 300px; */
+}
+
 /* End product list card */
 
 .product-detail {
