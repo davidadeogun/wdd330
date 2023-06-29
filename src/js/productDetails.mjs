@@ -18,9 +18,7 @@ export default async function productDetails(productId) {
     //Updating the cart count. Called the updateCartCount function for the Superscript number
     updateCartCount();
 }
-// if(productData.length < 0) {
-//     console.log("here's the data")
-// } else {console.log("no data")};
+
 
 function addToCart() {
   let info = productData;
