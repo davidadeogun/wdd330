@@ -49,42 +49,54 @@ function showPreview(products) {
   const product = products;
   //Get the preview button
   const previewButtons = document.querySelectorAll(".look-button");
+  //Get the div where will we you the quick look
   const productView = document.querySelector("#productView");
 
 
   //Use for each to apply the same function to all the preview buttons
   previewButtons.forEach(button => {
     button.addEventListener("click", () => {
+      //Get the ID for the product selected
       const productId = button.getAttribute("data-id");
       const product = products.find(p => p.Id === productId);
 
+      //Call the productPreview template to show in the DOM
       const productContent = productPreview(product);
-
-
+      
+      //Display the preview on the DOM
       productView.innerHTML = productContent;
 
-
+      //Display the product preview when click the button
       productView.style.display = "block";
+
+      //Get all the close preview buttons when clicked one preview button
+      const closePreview = document.querySelectorAll(".close-preview");
       
+      //Use for each to close the preview when click the X button 
+      closePreview.forEach(button => {
+        button.addEventListener("click", () => {
+          productView.style.display = "none";
+        });
+      });
     });
-    // renderListWithTemplate(productPreview, ".products", product);
-    
-
   });
 
-  productView.addEventListener("click", function() {
-    productView.style.display = "none";
-  });
 }
 
 function productPreview(prod) {
+  //Extract the numeric value from the product price in order 
+    //to calculate the discounted price.
+    const priceNumber = parseFloat(prod.FinalPrice);
+    const discountedPrice = priceNumber * 0.8; //This applies 20% discount
+  
   //Create the template for the modal preview
   return`<div class="previewContainer">
+  <button class="close-preview">X</button>
   <h3 id="productName">${prod.Brand.Name}</h3>
   <a href="/product_pages/index.html?product=${prod.Id}"><h2 class="divider" id="productNameWithoutBrand">${prod.NameWithoutBrand}</h2></a>
   <img id="productImage" class="divider" src="${prod.Images.PrimaryLarge}" alt="${prod.Name}"/>
   <p class="product-card__price" id="productFinalPrice">${prod.FinalPrice}</p>
-  <p id="discountedPrice">$1.00</p>
+  <p id="discountedPrice">${discountedPrice.toFixed(2)}</p>
   <p class="product__color" id="productColorName">${prod.Colors[0].ColorName}</p>
   <p class="product__description" id="productDescriptionHtmlSimple">${prod.DescriptionHtmlSimple}</p>
   </div>`

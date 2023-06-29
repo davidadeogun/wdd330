@@ -184,7 +184,7 @@ button {
   background-color: var(--light-grey);
 }
 
-.product-view {
+#productView {
   display: none;
   position: fixed;
   top: 50%;
@@ -193,7 +193,7 @@ button {
   width: 400px;
   height: 500px;
   border: 2px solid #000000;
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: scroll;
   z-index: 1;
   background-color: var(--light-grey);
@@ -202,9 +202,16 @@ button {
 .previewContainer {
   position: fixed;
   padding: 15px;
-  /* padding: 100px; */
-  /* display: none; */
-  /* width: 300px; */
+}
+
+.close-preview {
+  position: fixed;
+  border: 1px solid #000000;
+  color: #000000;
+  width: 30px;
+  padding: 0;
+  background-color: var(--primary-color);
+  margin: 0;
 }
 
 /* End product list card */
